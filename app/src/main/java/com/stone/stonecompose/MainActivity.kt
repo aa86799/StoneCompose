@@ -53,11 +53,7 @@ class MainActivity : ComponentActivity() {
 
 //                    SharedPreDemo()
 
-                    val header = remember { mutableStateOf("alpha") }
-                    NamePicker(header.value, listOf("C", "B", "A")) {
-                        Log.i("call NamePicker", it)
-                        header.value = "Beta-$it"
-                    }
+
                 }
             }
 
@@ -66,43 +62,8 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-/**
- * Display a list of names the user can click with a header
- */
-@Composable
-fun NamePicker(
-    header: String,
-    names: List<String>,
-    onNameClicked: (String) -> Unit
-) {
-    Column {
-        // this will recompose when [header] changes, but not when [names] changes
-        Text(header, style = androidx.compose.material.MaterialTheme.typography.h5)
-        Divider()
 
-        Log.i("NamePicker", "")
 
-        // LazyColumn is the Compose version of a RecyclerView.
-        // The lambda passed to items() is similar to a RecyclerView.ViewHolder.
-        LazyColumn {
-            items(names) { name ->
-                // When an item's [name] updates, the adapter for that item
-                // will recompose. This will not recompose when [header] changes
-                NamePickerItem(name, onNameClicked)
-                Log.i("NamePicker", "call NamePickerItem $name")
-                // header 变化后， LazyColumn 跟随变化
-            }
-        }
-    }
-}
-
-/**
- * Display a single name the user can click.
- */
-@Composable
-private fun NamePickerItem(name: String, onClicked: (String) -> Unit) {
-    Text(name, Modifier.clickable(onClick = { onClicked(name) }))
-}
 
 //实例化SharePreference对象
 val mainSharePref: SharedPreferences = MyApplication.getInstance().getSharedPreferences("main_share", android.content.Context.MODE_PRIVATE)

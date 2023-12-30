@@ -1,6 +1,13 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
+// 以前要写 classpath，现在用 plugins
 plugins {
     id 'com.android.application' version '8.0.0' apply false
     id 'com.android.library' version '8.0.0' apply false
     id 'org.jetbrains.kotlin.android' version '1.8.10' apply false
+    /*
+     不添加 id:compose  则无法进行预览
+     https://plugins.gradle.org/plugin/org.jetbrains.compose
+     https://mvnrepository.com/artifact/org.jetbrains.compose/compose-gradle-plugin
+     */
+    id("org.jetbrains.compose") version "1.5.11"
 }
