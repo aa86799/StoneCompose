@@ -30,11 +30,14 @@ import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSiz
 import androidx.compose.material3.windowsizeclass.WindowSizeClass
 import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.Stable
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.Saver
 import androidx.compose.runtime.saveable.SaverScope
 import androidx.compose.runtime.saveable.listSaver
@@ -64,6 +67,7 @@ import com.stone.stonecompose.ui.theme.C_4F57FF
 import com.stone.stonecompose.ui.theme.Purple40
 import com.stone.stonecompose.ui.theme.Purple80
 import com.stone.stonecompose.util.logi
+import kotlinx.coroutines.launch
 import kotlinx.parcelize.Parcelize
 import kotlin.random.Random
 
@@ -131,6 +135,11 @@ class TestRememberStateLazyColumnActivity : AppCompatActivity() {
                 item {
                     TestWindowSizeChanged(WindowSizeClass.calculateFromSize(DpSize(100.dp, 200.dp)))
                 }
+                item {
+                    TestDerived()
+                }
+                item { TestStateFlow() }
+                item { TestStateFlow2() }
 
                 /*
                   * 垂直滚动 嵌套 水平滚动
@@ -373,7 +382,7 @@ class TestRememberStateLazyColumnActivity : AppCompatActivity() {
             // LazyColumn is the Compose version of a RecyclerView.
             // The lambda passed to items() is similar to a RecyclerView.ViewHolder.
             LazyColumn { // 按列的纵向顺序，列中添加行
-                items(values) { name ->
+                items(values, key = { it }) { name ->
                     // When an item's [name] updates, the adapter for that item
                     // will recompose. This will not recompose when [header] changes
                     NamePickerItem(name, onItemClicked)
@@ -439,4 +448,69 @@ class TestRememberStateLazyColumnActivity : AppCompatActivity() {
     class MyAppState(
         val windowSizeClass: WindowSizeClass
     )
+
+    @Composable
+    private fun TestDerived() {
+        val count = remember { mutableStateOf(0) }
+        // derivedStateOf 派生状态: 依赖另一个状态
+        val isEven = remember { derivedStateOf { count.value % 2 == 0 } }
+        Button(onClick = {
+            count.value += 5
+        }) {
+            Text("test derived: ${isEven.value}")
+        }
+    }
+
+    /*
+     * 如果你在组合过程中直接调用 launch 来启动一个协程，你可能会遇到
+     *  "Calls to launch should happen inside a LaunchedEffect and not composition" 的错误。
+     * 这是因为在 Compose 中，组合函数应该是无副作用的，而直接启动协程是一种副作用。
+     *
+     * 使用 LaunchedEffect 来启动协程。LaunchedEffect 接受一个键（key）作为参数，
+     *  当这个键发生变化时，它会取消当前的协程并重新启动一个新的协程。
+     * 如果你希望协程在组件的整个生命周期内只启动一次，你可以使用 Unit 或其他不变的值作为键。
+     *
+     * 滚动出屏幕，再滚动进入屏幕，每次进入，就有如下输出：
+     *      testStateFlow collect: -100 , 就表示 重新执行了一次重组
+     */
+    @Composable
+    private fun TestStateFlow() {
+        val scope = rememberCoroutineScope()
+        LaunchedEffect(key1 = Unit) {
+            scope.launch {
+                viewModel.testStateFlow.collect {
+                    logi("testStateFlow collect: $it")
+                }
+            }
+        }
+
+        Button(onClick = {
+            viewModel.updateInput(viewModel.countValue + 50)
+        }) {
+            Text("testStateFlow: ${viewModel.countValue}")
+        }
+    }
+
+    /*
+     * 将 协程 flow的 处理，移到 viewModel 中，
+     * scope 需要传递到 vm，
+     */
+    @Composable
+    private fun TestStateFlow2() {
+        val scope = rememberCoroutineScope()
+//        LaunchedEffect(key1 = Unit) {
+//            scope.launch {
+//                viewModel.testStateFlow.collect {
+//                    logi("testStateFlow collect: $it")
+//                }
+//            }
+//        }
+        viewModel.testStateFlowFunc(scope)
+
+        Button(onClick = {
+            viewModel.updateInput(viewModel.countValue + 20)
+        }) {
+            Text("testStateFlow: ${viewModel.countValue}")
+        }
+    }
 }
