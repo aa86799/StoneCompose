@@ -27,6 +27,7 @@
         <activity android:name=".page.foundation.TestMaterialDesignActivity" />
         <activity android:name=".page.foundation.TestScaffoldActivity" />
         <activity android:name=".page.foundation.TestRememberStateLazyColumnActivity" />
+        <activity android:name=".page.foundation.TestDialogActivity" />
         <activity
             android:name=".page.HomeActivity"
             android:exported="true"
