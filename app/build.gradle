@@ -82,6 +82,10 @@ dependencies {
     // skip Material Design and build directly on top of foundational components
     implementation 'androidx.compose.foundation:foundation'
 
+    implementation("io.coil-kt:coil:2.5.0")
+    implementation("io.coil-kt:coil-compose:2.5.0")
+    implementation("io.coil-kt:coil-svg:2.5.0")
+
     implementation 'com.github.GrenderG:Toasty:1.5.2'
 
     testImplementation 'junit:junit:4.13.2'

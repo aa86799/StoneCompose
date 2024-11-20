@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
+  <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
@@ -28,6 +30,14 @@
         <activity android:name=".page.foundation.TestScaffoldActivity" />
         <activity android:name=".page.foundation.TestRememberStateLazyColumnActivity" />
         <activity android:name=".page.foundation.TestDialogActivity" />
+        <activity android:name=".page.foundation.TestButtonActivity" />
+        <activity android:name=".page.foundation.TestCardActivity" />
+        <activity android:name=".page.foundation.TestFloatActionButtonActivity" />
+        <activity android:name=".page.foundation.TestIconActivity" />
+        <activity android:name=".page.foundation.TestImageActivity" />
+        <activity android:name=".page.foundation.TestSliderActivity" />
+        <activity android:name=".page.foundation.TestTextActivity" />
+        <activity android:name=".page.foundation.TestTextFieldActivity" />
         <activity
             android:name=".page.HomeActivity"
             android:exported="true"

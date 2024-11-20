@@ -18,11 +18,19 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.stone.stonecompose.page.foundation.TestTextImageButtonActivity
 import com.stone.stonecompose.common.openActivity
+import com.stone.stonecompose.page.foundation.TestButtonActivity
+import com.stone.stonecompose.page.foundation.TestCardActivity
 import com.stone.stonecompose.page.foundation.TestDialogActivity
+import com.stone.stonecompose.page.foundation.TestFloatActionButtonActivity
+import com.stone.stonecompose.page.foundation.TestIconActivity
+import com.stone.stonecompose.page.foundation.TestImageActivity
 import com.stone.stonecompose.page.foundation.TestMaterialDesignActivity
 import com.stone.stonecompose.page.foundation.TestRememberStateLazyColumnActivity
 import com.stone.stonecompose.page.foundation.TestRowColumnBoxActivity
 import com.stone.stonecompose.page.foundation.TestScaffoldActivity
+import com.stone.stonecompose.page.foundation.TestSliderActivity
+import com.stone.stonecompose.page.foundation.TestTextActivity
+import com.stone.stonecompose.page.foundation.TestTextFieldActivity
 import com.stone.stonecompose.ui.theme.C_4F57FF
 import com.stone.stonecompose.ui.theme.Purple80
 
@@ -54,6 +62,30 @@ class HomeActivity : AppCompatActivity() {
                             .padding(16.dp, Dp(8f))
                             .clickable {
                                 when (item) {
+                                    "test Text" -> {
+                                        openActivity<TestTextActivity>()
+                                    }
+                                    "test TextField" -> {
+                                        openActivity<TestTextFieldActivity>()
+                                    }
+                                    "test Slider" -> {
+                                        openActivity<TestSliderActivity>()
+                                    }
+                                    "test Image" -> {
+                                        openActivity<TestImageActivity>()
+                                    }
+                                    "test Icon" -> {
+                                        openActivity<TestIconActivity>()
+                                    }
+                                    "test FAB" -> {
+                                        openActivity<TestFloatActionButtonActivity>()
+                                    }
+                                    "test Card" -> {
+                                        openActivity<TestCardActivity>()
+                                    }
+                                    "test Button" -> {
+                                        openActivity<TestButtonActivity>()
+                                    }
                                     "test Text/Image/Button" -> {
                                         openActivity<TestTextImageButtonActivity>()
                                     }
@@ -82,35 +114,20 @@ class HomeActivity : AppCompatActivity() {
 
     companion object {
         val TITLES = listOf(
+            "test TextField",
+            "test Text",
+            "test Slider",
+            "test Image",
+            "test Icon",
+            "test FAB",
+            "test Card",
+            "test Button",
             "test Text/Image/Button",
             "test Row/Column/Box",
             "test Material Design",
             "test Scaffold",
             "test RememberState LazyColumn",
             "test AlertDialog",
-            "test ",
-            "test ",
-            "test ",
-            "test ",
-            "test ",
-            "test ",
-            "test ",
-            "test ",
-            "test ",
-            "test ",
-            "test ",
-            "test ",
-            "test ",
-            "test ",
-            "test ",
-            "test ",
-            "test ",
-            "test ",
-            "test ",
-            "test ",
-            "test ",
-            "test ",
-            "test ",
             "test ",
             "test ",
             "test ",
