@@ -50,6 +50,7 @@
         <activity android:name=".page.layout.TestPagerActivity" />
         <activity android:name=".page.layout.TestPullRefreshActivity" />
         <activity android:name=".page.layout.TestCustomLayoutActivity" />
+        <activity android:name=".page.layout.TestParentDataActivity" />
         <activity
             android:name=".page.HomeActivity"
             android:exported="true"

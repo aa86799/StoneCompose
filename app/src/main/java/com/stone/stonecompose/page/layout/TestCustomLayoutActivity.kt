@@ -441,6 +441,9 @@ class TestCustomLayoutActivity : AppCompatActivity() {
         divider: @Composable (Int) -> Unit // 传入高度
     ) {
         var maxHeight = 0
+        /*
+        * SubcomposeLayout 允许子组件的合成过程延迟到父组件实际发生测量时机进行
+        */
         SubcomposeLayout(modifier = modifier) { constraints->
             val placeables = subcompose("text", text).map {
                 val placeable = it.measure(constraints)

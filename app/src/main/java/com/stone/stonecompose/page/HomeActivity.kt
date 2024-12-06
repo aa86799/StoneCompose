@@ -38,6 +38,7 @@ import com.stone.stonecompose.page.layout.TestColumnActivity
 import com.stone.stonecompose.page.layout.TestCustomLayoutActivity
 import com.stone.stonecompose.page.layout.TestFlowLayoutActivity
 import com.stone.stonecompose.page.layout.TestPagerActivity
+import com.stone.stonecompose.page.layout.TestParentDataActivity
 import com.stone.stonecompose.page.layout.TestPullRefreshActivity
 import com.stone.stonecompose.page.layout.TestRowActivity
 import com.stone.stonecompose.page.layout.TestSurfaceActivity
@@ -104,6 +105,7 @@ class HomeActivity : BaseMviCpActivity<HomeViewModel>() {
 
     private fun clickToShowMenu(item: String) {
         when (item) {
+            "test ParentData" -> openActivity<TestParentDataActivity>()
             "test Layout/Measure" -> openActivity<TestCustomLayoutActivity>()
             "test PullRefresh" -> openActivity<TestPullRefreshActivity>()
             "test Pager" -> openActivity<TestPagerActivity>()
@@ -133,6 +135,7 @@ class HomeActivity : BaseMviCpActivity<HomeViewModel>() {
 
     companion object {
         val TITLES = listOf(
+            "test ParentData",
             "test Layout/Measure",
             "test Pager",
             "test BottomSheet",
