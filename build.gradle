@@ -10,4 +10,6 @@ plugins {
      https://mvnrepository.com/artifact/org.jetbrains.compose/compose-gradle-plugin
      */
     id("org.jetbrains.compose") version "1.5.11"
+//    classpath 'com.google.dagger:hilt-android-gradle-plugin:2.45'
+    id("com.google.dagger.hilt.android") version "2.52" apply false
 }

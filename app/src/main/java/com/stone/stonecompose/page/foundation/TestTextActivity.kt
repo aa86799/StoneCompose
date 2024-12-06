@@ -157,7 +157,7 @@ class TestTextActivity : AppCompatActivity() {
                     interactionSource = null,
                     indication = null,
                     onClick = {
-                        ToastUtil.showToast("click 2")
+//                        ToastUtil.showToast("click 2")
                     },
                 )
             )

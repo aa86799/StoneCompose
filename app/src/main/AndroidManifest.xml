@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
+  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
   <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -27,7 +28,7 @@
         <activity android:name=".page.foundation.TestTextImageButtonActivity" />
         <activity android:name=".page.foundation.TestRowColumnBoxActivity" />
         <activity android:name=".page.foundation.TestMaterialDesignActivity" />
-        <activity android:name=".page.foundation.TestScaffoldActivity" />
+        <activity android:name=".page.layout.TestScaffoldActivity" />
         <activity android:name=".page.foundation.TestRememberStateLazyColumnActivity" />
         <activity android:name=".page.foundation.TestDialogActivity" />
         <activity android:name=".page.foundation.TestButtonActivity" />
@@ -38,6 +39,17 @@
         <activity android:name=".page.foundation.TestSliderActivity" />
         <activity android:name=".page.foundation.TestTextActivity" />
         <activity android:name=".page.foundation.TestTextFieldActivity" />
+
+        <activity android:name=".page.layout.TestBoxActivity" />
+        <activity android:name=".page.layout.TestRowActivity" />
+        <activity android:name=".page.layout.TestColumnActivity" />
+        <activity android:name=".page.layout.TestFlowLayoutActivity" />
+        <activity android:name=".page.layout.TestSurfaceActivity" />
+        <activity android:name=".page.layout.TestBottomNavigationActivity" />
+        <activity android:name=".page.layout.TestBottomSheetActivity" />
+        <activity android:name=".page.layout.TestPagerActivity" />
+        <activity android:name=".page.layout.TestPullRefreshActivity" />
+        <activity android:name=".page.layout.TestCustomLayoutActivity" />
         <activity
             android:name=".page.HomeActivity"
             android:exported="true"

@@ -3,7 +3,9 @@ package com.stone.stonecompose
 import android.app.Activity
 import android.app.Application
 import android.os.Bundle
+import dagger.hilt.android.HiltAndroidApp
 
+@HiltAndroidApp
 class MyApplication: Application() {
 
     var topActivity: Activity? = null

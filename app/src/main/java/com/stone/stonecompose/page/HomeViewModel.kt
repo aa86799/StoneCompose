@@ -7,7 +7,10 @@ import androidx.compose.runtime.snapshotFlow
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.stone.stonecompose.base.mvi.BaseMviViewModel
+import com.stone.stonecompose.base.mvi.IUiIntent
 import com.stone.stonecompose.util.logi
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
@@ -19,8 +22,10 @@ import kotlinx.coroutines.flow.mapLatest
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-class HomeViewModel : ViewModel() {
+@HiltViewModel
+class HomeViewModel @Inject constructor(): BaseMviViewModel() {
 
     val myFlow: Flow<Int> = flow {
         repeat(1000) {
@@ -57,5 +62,9 @@ class HomeViewModel : ViewModel() {
                 }
             }
         }
+    }
+
+    override fun handleUserIntent(intent: IUiIntent) {
+
     }
 }
